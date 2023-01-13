@@ -9,7 +9,9 @@ It was created as a way to become familiar with these tests by applying the skil
 the topics covered include javascript, html, css, queryselectors, innerhtml, 
 
 ## Usage
-Please use the following link to access the challenge [](https://russkinori.github.io/Devint-quiz/). 
+Please use the following link to access the challenge [](https://russkinori.github.io/Devint-quiz/).This will open a webpage in your default web browser. Once on the webpage, click on the start quiz button to get started. 
+
+
 Create a code quiz that contains the following requirements:
 
 A start button that when clicked a timer starts and the first question appears.
