@@ -16,11 +16,13 @@ The topics covered include javascript, html, css, queryselector, innerhtml, inte
 5. The game ends when **all questions have been answered** or the **timer reaches 0**.
 6. Your score will then be displayed with the option to save it and add your initials. 
 
-Credits
+## Credits
 
 The following resources were used in the development of this application.
  - https://developer.mozilla.org/en-US/docs/Web/API/Document_Object_Model
- - 
+ - https://www.youtube.com/watch?v=3oOKAJTD2F8
+ - https://www.youtube.com/watch?v=YrE62Dzg4oM
+ 
 
 Create a code quiz that contains the following requirements:
 

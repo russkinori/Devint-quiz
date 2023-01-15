@@ -1,23 +1,52 @@
-    //Start quiz
-        // Press the button to start the quiz 
-        //Hide the main screen
-        //Display the first question and list of answers
-        //Display the timer and start the countdown 
+//Start the quiz
+    //Press the Start Quiz button 
+        // Hide the default screen
+            //How can I hide the default screen?
+                //Replace the start class in the div element with the hide class 
+        // Display the first question and list of answers 
+            //How can I display the questions?
+                //Create a question bank
+                //Remove the class hide from the div element
+                //Repace the text in the h2 element
+            //How can I display the answers?
+                //Create the element
+                //Set the text
+                //Append to the html area
 
-// Click the button for the selected answer
-    //Move to the next question
-    //Deduct from the remaining time if selection is incorrect.
+        // Display the total time and start the countdown 
+            //How can I display the total time?
+                //Replace the number within the span element
+            //How can I start the timer?
+                //
+//Select answers
+    // Click the button of the potential answer
+    // Move to the next question
+    // Deduct from the remaining time if selection is incorrect.
  
-// Quiz finishes 
+//Finish quiz  
     //End quiz when timer reaches 0 or all questions are answered
-    //Allow user to adds their intials, then clears their intials and starts over.
+    //Allow user to add their intials and save their score
+    //Allow user to clears their intials and start over.
 
 
+
+//Function to hide the start screen
+let wrapper = document.querySelector(".wrapper");
+console.log(wrapper);
+
+// function changeScreen() {
+//     let startScreen = document.getElementById()
+// }
+
+wrapper.addEventListener("click", function(event){
+    
+    event.wrapper.setAttribute("")
+});
 // Create an array of objects so all the data for the question is contained in a single area
-    //place each question in the html area for question title
+    //Place each question in the html area for question title
     // Generate a button for each item 
         //Consider a block element or div within the choices div in index.html 
-        //ensure to loop over nd generate the buttons from the choices
+        //Ensure to loop over and generate the buttons from the choices
         //Determine the index of the button the user selects
             //Consider the data-index lesson from yesterday
 
