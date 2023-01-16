@@ -31,7 +31,10 @@
 //Create variables for the HTML elements
 let startButton = document.querySelector("#start");
 let startScreen = document.querySelector("#start-screen");
-let questions = document.querySelector("#questions");
+let questionEl = document.querySelector("#questions");
+let choicesEl = document.querySelector("#choices")
+let question = document.querySelector("question-title")
+let time = document.querySelector("#time");
 
 // Create an array of objects for all questions and answers
 let questionSet = [
@@ -53,8 +56,12 @@ let questionSet = [
     }
 ];
 
+
+let currentQuestion = 0;        //Variable for current question index
+let timer = 100;                //Variable for total time
+
 //Create an event listener on the start button
-startButton.addEventListener("click", startQuiz)
+startButton.addEventListener("click", startQuiz);
 
 //Function to start the quiz
 function startQuiz(){
@@ -62,11 +69,24 @@ function startQuiz(){
 
     startButton.classList.add("hide");      //Hide the default screen
     startScreen.classList.add("hide");      //Hide the start quiz button
-    questions.classList.add("show");        //Display the first question
+    questions.classList.remove("hide");     //Display the first question
+    currentQuestion = 0;
 
 }
 
+function showQuestions(question-title) {
+    
+}
 
+
+
+let countdownTimer = setInterval(function(){
+    timer--;
+    time.textContent("timer");
+}, 1000);
+
+// clearInterval(countdownTimer)
+console.log(currentQuestion)
 
     //Place each question in the html area for question title
     // Generate a button for each item 
