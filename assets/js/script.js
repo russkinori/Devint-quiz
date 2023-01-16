@@ -55,13 +55,14 @@ let questionSet = [
 
 //Create an event listener on the start button
 startButton.addEventListener("click", startQuiz)
-    
+
+//Function to start the quiz
 function startQuiz(){
     console.log("started")
 
-    startButton.classList.add("hide");
-    startScreen.classList.add("hide");
-    questions.classList.add("show");
+    startButton.classList.add("hide");      //Hide the default screen
+    startScreen.classList.add("hide");      //Hide the start quiz button
+    questions.classList.add("show");        //Display the first question
 
 }
 
