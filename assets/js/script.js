@@ -28,21 +28,45 @@
     //Allow user to add their intials and save their score
     //Allow user to clears their intials and start over.
 
+//Create variables for the HTML elements
+let startButton = document.querySelector("#start");
+let startScreen = document.querySelector("#start-screen");
+let questions = document.querySelector("#questions");
 
+// Create an array of objects for all questions and answers
+let questionSet = [
+    {
+        question: "The symbol [] represents a(n):",
+        answer: ["Object", "Variable", "Array", "Class"] 
+    },
+    {
+        question: "Which of the following is a scope for variables?",
+        answer: ["Regional", "Global", "International", "National"]
+    },
+    {
+        question: "Which HTML element links to a Javascript file?",
+        answer: ["<script>", "<link>", "<meta>", "<header>"] 
+    },
+    {
+        question: "Which of the following is the syntax for an If statement?",
+        answer: ["if(condition)", "if(condition)<>", "if-condition{}", "if(condition){}"]
+    }
+];
 
-//Function to hide the start screen
-let wrapper = document.querySelector(".wrapper");
-console.log(wrapper);
-
-// function changeScreen() {
-//     let startScreen = document.getElementById()
-// }
-
-wrapper.addEventListener("click", function(event){
+//Create an event listener on the start button
+startButton.addEventListener("click", startQuiz)
     
-    event.wrapper.setAttribute("")
-});
-// Create an array of objects so all the data for the question is contained in a single area
+function startQuiz(){
+    console.log("started")
+
+    startButton.classList.add("hide");
+    startScreen.classList.add("hide");
+    questions.classList.add("show");
+
+}
+
+
+
     //Place each question in the html area for question title
     // Generate a button for each item 
         //Consider a block element or div within the choices div in index.html 
