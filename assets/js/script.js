@@ -33,59 +33,78 @@ let startButton = document.querySelector("#start");
 let startScreen = document.querySelector("#start-screen");
 let questionEl = document.querySelector("#questions");
 let choicesEl = document.querySelector("#choices")
-let question = document.querySelector("question-title")
+let questions = document.querySelector("question-title")
 let time = document.querySelector("#time");
 
 // Create an array of objects for all questions and answers
 let questionSet = [
     {
         question: "The symbol [] represents a(n):",
-        answer: ["Object", "Variable", "Array", "Class"] 
+        answer: ["a. Object", "b. Variable", "c. Array", "d. Class"] 
     },
     {
         question: "Which of the following is a scope for variables?",
-        answer: ["Regional", "Global", "International", "National"]
+        answer: ["a. Regional", "b. Global", "c. International", "d. National"]
     },
     {
         question: "Which HTML element links to a Javascript file?",
-        answer: ["<script>", "<link>", "<meta>", "<header>"] 
+        answer: ["a. <script>", "b. <link>", "c. <meta>", "d. <header>"] 
     },
     {
         question: "Which of the following is the syntax for an If statement?",
-        answer: ["if(condition)", "if(condition)<>", "if-condition{}", "if(condition){}"]
+        answer: ["a. if(condition)", "b. if(condition)<>", "c. if-condition{}", "d. if(condition){}"]
     }
 ];
 
 
 let currentQuestion = 0;        //Variable for current question index
 let timer = 100;                //Variable for total time
-
+let countdownTimer = 0
 //Create an event listener on the start button
 startButton.addEventListener("click", startQuiz);
 
 //Function to start the quiz
 function startQuiz(){
-    console.log("started")
 
     startButton.classList.add("hide");      //Hide the default screen
     startScreen.classList.add("hide");      //Hide the start quiz button
-    questions.classList.remove("hide");     //Display the first question
+    questionEl.classList.remove("hide");     //Display the first question
+    countdownTimer = setInterval(function(){
+        timer--;
+        time.innerHTML = timer;
+    }, 1000);
     currentQuestion = 0;
 
 }
+// console.log(questionSet)
+// function showQuestions(question) {
+//   questions.textContent = question.question;
+// }
 
-function showQuestions(question-title) {
+renderquestionSet();
+
+
+function renderquestionSet(){
     
+    for (let i = 0; i < questionSet.length; i++) {
+        
+        let button = document.createElement("button");
+        
+        button.textContent = questionSet[currentQuestion].answer[i];
+        
+        choicesEl.appendChild(button)
+       
+    }
+  
+    console.log(choicesEl);
 }
 
 
 
-let countdownTimer = setInterval(function(){
-    timer--;
-    time.textContent("timer");
-}, 1000);
 
-// clearInterval(countdownTimer)
+
+
+clearInterval(countdownTimer)
 console.log(currentQuestion)
 
     //Place each question in the html area for question title
