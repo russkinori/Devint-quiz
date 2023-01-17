@@ -35,24 +35,29 @@ let questionEl = document.querySelector("#questions");
 let choicesEl = document.querySelector("#choices")
 let questions = document.querySelector("question-title")
 let time = document.querySelector("#time");
+let wrapperEl = document.querySelector("#wrapper");
 
 // Create an array of objects for all questions and answers
 let questionSet = [
     {
         question: "The symbol [] represents a(n):",
-        answer: ["a. Object", "b. Variable", "c. Array", "d. Class"] 
+        answer: ["a. Object", "b. Variable", "c. Array", "d. Class"],
+        correctAnswer: "c"
     },
     {
         question: "Which of the following is a scope for variables?",
-        answer: ["a. Regional", "b. Global", "c. International", "d. National"]
+        answer: ["a. Regional", "b. Global", "c. International", "d. National"],
+        correctAnswer: "b"
     },
     {
         question: "Which HTML element links to a Javascript file?",
-        answer: ["a. <script>", "b. <link>", "c. <meta>", "d. <header>"] 
+        answer: ["a. <script>", "b. <link>", "c. <meta>", "d. <header>"],
+        correctAnswer: "a" 
     },
     {
         question: "Which of the following is the syntax for an If statement?",
-        answer: ["a. if(condition)", "b. if(condition)<>", "c. if-condition{}", "d. if(condition){}"]
+        answer: ["a. if(condition)", "b. if(condition)<>", "c. if-condition{}", "d. if(condition){}"],
+        correctAnswer: "d"
     }
 ];
 
@@ -68,41 +73,54 @@ function startQuiz(){
 
     startButton.classList.add("hide");      //Hide the default screen
     startScreen.classList.add("hide");      //Hide the start quiz button
-    questionEl.classList.remove("hide");     //Display the first question
-    countdownTimer = setInterval(function(){
-        timer--;
-        time.innerHTML = timer;
-    }, 1000);
+    questionEl.classList.remove("hide");    //Display the first question
     currentQuestion = 0;
+    //Start the countdown
+    countdownTimer = setInterval(function(){
+        
+        timer--;                            //Deduct time by 1 
+        time.innerHTML = timer;            //Display remaining time 
+
+    }, 1000);                              //Change time every second
+    
 
 }
+
+
 // console.log(questionSet)
 // function showQuestions(question) {
 //   questions.textContent = question.question;
 // }
 
+choicesEl.addEventListener("click", function(event){
+ let selectButton = event.target;
+ let correctAnswer = selectButton.data-type.correctAnswer
+
+ console.log(selectButton)
+ 
+});
+
+
+
+
+//Render the questions
 renderquestionSet();
 
-
+//Function to display the answers
 function renderquestionSet(){
     
-    for (let i = 0; i < questionSet.length; i++) {
-        
-        let button = document.createElement("button");
-        
-        button.textContent = questionSet[currentQuestion].answer[i];
-        
-        choicesEl.appendChild(button)
+    //Increment through the full set of questions
+    for (let i = 0; i < questionSet.length; i++) {        
        
-    }
-  
+        let button = document.createElement("button");                  //Create a button element in the html file      
+        button.textContent = questionSet[currentQuestion].answer[i];    //Display the answers within the buttons
+        choicesEl.appendChild(button)                                   //Place the buttons within the choices div
+        button.classList.add("btn");
+    };
+
+      
     console.log(choicesEl);
 }
-
-
-
-
-
 
 clearInterval(countdownTimer)
 console.log(currentQuestion)
