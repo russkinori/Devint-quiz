@@ -12,7 +12,7 @@ The topics covered include javascript, html, css, queryselector, innerhtml, inte
 1. Please use the following link to access the challenge https://russkinori.github.io/Devint-quiz/. This will open the application in your default web browser. 
 2. Once on the application is loaoded, click on **Start Quiz** to get started. 
 3. The **first question** will then appear with a list of **4 choices**, as well as the **countdown timer** giving you a total time of **100 seconds**.
-4. Select an answer from the choices to move to the next question. An **incorrect answer will deduct 5 seconds** from the time remaining while a **correct answer has no action**.
+4. Select an answer from the choices to move to the next question. An **incorrect answer will deduct 5 seconds** from the time remaining, while a **correct answer has no action**.
 5. The game ends when **all questions have been answered** or the **timer reaches 0**.
 6. Your score will then be displayed with the option to save it and add your initials. 
 
@@ -24,16 +24,4 @@ The following resources were used in the development of this application.
  - https://www.youtube.com/watch?v=YrE62Dzg4oM
  
 
-Create a code quiz that contains the following requirements:
-
-A start button that when clicked a timer starts and the first question appears.
-
-Questions contain buttons for each answer.
-When answer is clicked, the next question appears
-If the answer clicked was incorrect then subtract time from the clock
-The quiz should end when all questions are answered or the timer reaches 0.
-
-When the game ends, it should display their score and give the user the ability to save their initials and their score
-Mock-Up
-The following animation demonstrates the application functionality:
 

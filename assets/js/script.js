@@ -33,14 +33,14 @@ let startButton = document.querySelector("#start");
 let startScreen = document.querySelector("#start-screen");
 let questionEl = document.querySelector("#questions");
 let choicesEl = document.querySelector("#choices")
-let questions = document.querySelector("question-title")
+let questionBox = document.querySelector("#question-title")
 let time = document.querySelector("#time");
 let wrapperEl = document.querySelector("#wrapper");
 
 // Create an array of objects for all questions and answers
 let questionSet = [
     {
-        question: "The symbol [] represents a(n):",
+        question: "The symbol [ ] represents a(n):",
         answer: ["a. Object", "b. Variable", "c. Array", "d. Class"],
         correctAnswer: "c"
     },
@@ -56,7 +56,7 @@ let questionSet = [
     },
     {
         question: "Which of the following is the syntax for an If statement?",
-        answer: ["a. if(condition)", "b. if(condition)<>", "c. if-condition{}", "d. if(condition){}"],
+        answer: ["a. if(condition)", "b. if(condition)< >", "c. if-condition{ }", "d. if(condition){ }"],
         correctAnswer: "d"
     }
 ];
@@ -64,27 +64,28 @@ let questionSet = [
 
 let currentQuestion = 0;        //Variable for current question index
 let timer = 100;                //Variable for total time
-let countdownTimer = 0
+let countdownTimer = 0          //
+
 //Create an event listener on the start button
 startButton.addEventListener("click", startQuiz);
 
 //Function to start the quiz
 function startQuiz(){
 
-    startButton.classList.add("hide");      //Hide the default screen
+    startButton.classList.replace("start", "hide");      //Hide the default screen
     startScreen.classList.add("hide");      //Hide the start quiz button
     questionEl.classList.remove("hide");    //Display the first question
     currentQuestion = 0;
+    
     //Start the countdown
     countdownTimer = setInterval(function(){
         
         timer--;                            //Deduct time by 1 
-        time.innerHTML = timer;            //Display remaining time 
+        time.textContent = timer;            //Display remaining time 
 
-    }, 1000);                              //Change time every second
-    
-
+    }, 1000);                              //Change time every second    
 }
+
 
 
 // console.log(questionSet)
@@ -92,13 +93,6 @@ function startQuiz(){
 //   questions.textContent = question.question;
 // }
 
-choicesEl.addEventListener("click", function(event){
- let selectButton = event.target;
- let correctAnswer = selectButton.data-type.correctAnswer
-
- console.log(selectButton)
- 
-});
 
 
 
@@ -108,20 +102,26 @@ renderquestionSet();
 
 //Function to display the answers
 function renderquestionSet(){
-    
+    // choicesEl.innerHTML = "";
+    questionBox.textContent = questionSet[currentQuestion].question;
     //Increment through the full set of questions
-    for (let i = 0; i < questionSet.length; i++) {        
-       
+    for (let i = 0; i < questionSet[currentQuestion].answer.length; i++) {        
+        
         let button = document.createElement("button");                  //Create a button element in the html file      
         button.textContent = questionSet[currentQuestion].answer[i];    //Display the answers within the buttons
         choicesEl.appendChild(button)                                   //Place the buttons within the choices div
-        button.classList.add("btn");
+        // button.classList.add("btn");
     };
-
-      
+    
+    choicesEl.addEventListener("click", function(event){
+     if(event.target.matches("button")){
+        console.log(event.target.getattribute("data-index"));
+     }
+    
+    
     console.log(choicesEl);
-}
-
+});
+};
 clearInterval(countdownTimer)
 console.log(currentQuestion)
 
