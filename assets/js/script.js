@@ -35,36 +35,39 @@ let questionEl = document.querySelector("#questions");
 let choicesEl = document.querySelector("#choices")
 let questionBox = document.querySelector("#question-title")
 let time = document.querySelector("#time");
-let wrapperEl = document.querySelector("#wrapper");
+let endScreen = document.querySelector("#end-screen");
+let scoreEl = document.querySelector("#final-score");
+
 
 // Create an array of objects for all questions and answers
 let questionSet = [
     {
         question: "The symbol [ ] represents a(n):",
-        answer: ["a. Object", "b. Variable", "c. Array", "d. Class"],
-        correctAnswer: "c"
+        choices: ["a. Object", "b. Variable", "c. Array", "d. Class"],
+        answer: "c. Array"
     },
     {
         question: "Which of the following is a scope for variables?",
-        answer: ["a. Regional", "b. Global", "c. International", "d. National"],
-        correctAnswer: "b"
+        choices: ["a. Regional", "b. Global", "c. International", "d. National"],
+        answer: "b. Global"
     },
     {
         question: "Which HTML element links to a Javascript file?",
-        answer: ["a. <script>", "b. <link>", "c. <meta>", "d. <header>"],
-        correctAnswer: "a" 
+        choices: ["a. <script>", "b. <link>", "c. <meta>", "d. <header>"],
+        answer: "a. <script>" 
     },
     {
         question: "Which of the following is the syntax for an If statement?",
-        answer: ["a. if(condition)", "b. if(condition)< >", "c. if-condition{ }", "d. if(condition){ }"],
-        correctAnswer: "d"
+        choices: ["a. if(condition)", "b. if(condition)< >", "c. if-condition{ }", "d. if(condition){ }"],
+        answer: "d. if(condition){ }"
     }
 ];
 
 
 let currentQuestion = 0;        //Variable for current question index
 let timer = 100;                //Variable for total time
-let countdownTimer = 0          //
+let countdownTimer = 0;         //Variable for timer
+let score = 0;                  //Variable for the final score
 
 //Create an event listener on the start button
 startButton.addEventListener("click", startQuiz);
@@ -82,50 +85,87 @@ function startQuiz(){
         
         timer--;                            //Deduct time by 1 
         time.textContent = timer;            //Display remaining time 
+        if (timer <=0 || currentQuestion >= questionSet.length) {
+            endQuiz();
+        }
 
     }, 1000);                              //Change time every second    
 }
 
+function endQuiz(){
+
+}
 
 
-// console.log(questionSet)
-// function showQuestions(question) {
-//   questions.textContent = question.question;
-// }
-
-
-
-
-
-//Render the questions
 renderquestionSet();
 
-//Function to display the answers
+//Render the questions
+
+//Function to display the current question and options
 function renderquestionSet(){
-    // choicesEl.innerHTML = "";
-    questionBox.textContent = questionSet[currentQuestion].question;
-    //Increment through the full set of questions
-    for (let i = 0; i < questionSet[currentQuestion].answer.length; i++) {        
-        
-        let button = document.createElement("button");                  //Create a button element in the html file      
-        button.textContent = questionSet[currentQuestion].answer[i];    //Display the answers within the buttons
-        choicesEl.appendChild(button)                                   //Place the buttons within the choices div
-        // button.classList.add("btn");
-    };
-    
-    choicesEl.addEventListener("click", function(event){
-     if(event.target.matches("button")){
-        console.log(event.target.getattribute("data-index"));
-     }
-    
-    
-    console.log(choicesEl);
-});
-};
+    // Display the question
+    let currentQuestionObject = questionSet[currentQuestion];
+    questionBox.textContent = currentQuestionObject.question;
+
+    // Clear previous choices
+    while (choicesEl.firstChild) {
+        choicesEl.removeChild(choicesEl.firstChild);
+    }
+
+    currentQuestionObject.choices.forEach(function(choice){
+
+        // //Increment through the full set of questions
+            let choiceButton = document.createElement("button");                  //Create a button element in the html file      
+            choiceButton.textContent = choice;                           //Display the answers within the buttons
+            choicesEl.appendChild(choiceButton)                                   //Place the buttons within the choices div
+            choiceButton.classList.add("btn");
+            
+            choiceButton.addEventListener("click", function(event){
+                if(event.target.matches("button")){
+                            checkAnswer(choice);
+                            console.log(choice);  
+                        }
+    })
+            
+        });
+}; 
+
+// Function to check answer
+function checkAnswer(choice) {
+    let currentQuestionObject = questionSet[currentQuestion];
+    if (choice !== currentQuestionObject.answer) {
+        timer -= 5; // Deduct 5 seconds from timer for wrong answer
+        score= timer;
+        scoreEl.textContent = score;
+    } else {
+        score= timer;
+        scoreEl.textContent = score;
+    }
+    console.log(score, timer);
+    currentQuestion++;
+    endQuiz();
+
+}
+
+// Function to end quiz
+function endQuiz() {
+
+    if (currentQuestion >= questionSet.length || timer<=0) {
+        endScreen.classList.replace("hide", "start");      //show the end screen
+        clearInterval(countdownTimer);
+    } else {
+        renderquestionSet();
+    }
+    // startScreen.classList.add("hide");      //Hide the start quiz button
+    // questionEl.classList.remove("hide");    //Display the first question
+
+}
+
+
 clearInterval(countdownTimer)
 console.log(currentQuestion)
 
-    //Place each question in the html area for question title
+//Place each question in the html area for question title
     // Generate a button for each item 
         //Consider a block element or div within the choices div in index.html 
         //Ensure to loop over and generate the buttons from the choices
