@@ -26,7 +26,7 @@
 //Finish quiz  
     //End quiz when timer reaches 0 or all questions are answered
     //Allow user to add their intials and save their score
-    //Allow user to clears their intials and start over.
+    //Allow user to clear their intials and start over.
 
 //Create variables for the HTML elements
 let startButton = document.querySelector("#start");
@@ -75,7 +75,6 @@ startButton.addEventListener("click", startQuiz);
 //Function to start the quiz
 function startQuiz(){
 
-    startButton.classList.replace("start", "hide");      //Hide the default screen
     startScreen.classList.add("hide");      //Hide the start quiz button
     questionEl.classList.remove("hide");    //Display the first question
     currentQuestion = 0;
@@ -85,21 +84,13 @@ function startQuiz(){
         
         timer--;                            //Deduct time by 1 
         time.textContent = timer;            //Display remaining time 
-        if (timer <=0 || currentQuestion >= questionSet.length) {
-            endQuiz();
-        }
 
     }, 1000);                              //Change time every second    
+    
+    //Render the questions
+    renderquestionSet();
 }
 
-function endQuiz(){
-
-}
-
-
-renderquestionSet();
-
-//Render the questions
 
 //Function to display the current question and options
 function renderquestionSet(){
@@ -114,7 +105,7 @@ function renderquestionSet(){
 
     currentQuestionObject.choices.forEach(function(choice){
 
-        // //Increment through the full set of questions
+            //Increment through the full set of questions
             let choiceButton = document.createElement("button");                  //Create a button element in the html file      
             choiceButton.textContent = choice;                           //Display the answers within the buttons
             choicesEl.appendChild(choiceButton)                                   //Place the buttons within the choices div
@@ -134,7 +125,7 @@ function renderquestionSet(){
 function checkAnswer(choice) {
     let currentQuestionObject = questionSet[currentQuestion];
     if (choice !== currentQuestionObject.answer) {
-        timer -= 5; // Deduct 5 seconds from timer for wrong answer
+        timer -= 10; // Deduct 5 seconds from timer for wrong answer
         score= timer;
         scoreEl.textContent = score;
     } else {
@@ -161,9 +152,6 @@ function endQuiz() {
 
 }
 
-
-clearInterval(countdownTimer)
-console.log(currentQuestion)
 
 //Place each question in the html area for question title
     // Generate a button for each item 
